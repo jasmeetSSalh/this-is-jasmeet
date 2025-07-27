@@ -21,12 +21,15 @@ body {
 
 .stars {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
+  top: -150%; /* Move it completely off the top of the screen */
+  left: -50%; /* Also move it horizontally if needed */
+  width: 200%; /* Make it large enough to cover during movement */
+  height: 300%;
   transform: rotate(-45deg);
+  pointer-events: none;
+  z-index: 0;
 }
+
 
 .star {
   $star-count: 30;
