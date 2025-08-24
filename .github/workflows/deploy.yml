@@ -33,12 +33,12 @@ jobs:
         run: npm ci
         
       - name: Build
-        run: npm run build
+        run: npm run build -- --base-href /this-is-jasmeet/
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/this-is-jasmeet-v3
+          path: ./dist/this-is-jasmeet-v3/browser
 
   deploy:
     environment:
