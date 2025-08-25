@@ -1,9 +1,18 @@
-<section id="about" class="flex items-center justify-center h-screen ">
-    <div class="relative isolate overflow-hidden py-24 sm:py-32 gap-8">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8 mb-8">
+<section id="about" class="min-h-screen py-16 px-4 relative overflow-hidden">
+    <!-- Background Effects (matching home page) -->
+    <div class="absolute inset-0 hero-background"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20"></div>
+    
+    <!-- Floating Elements (matching home page) -->
+    <div class="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl floating-element-1"></div>
+    <div class="absolute top-40 right-20 w-32 h-32 bg-purple-500/10 rounded-full blur-xl floating-element-2"></div>
+    <div class="absolute bottom-32 left-20 w-16 h-16 bg-cyan-500/10 rounded-full blur-xl floating-element-3"></div>
+    
+    <div class="relative z-10 flex items-center justify-center min-h-screen">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="max-w-2xl lg:mx-0 ">
-          <h2 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl mb-8">About Me</h2>
-          <p class="mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-xl/8">Hi, I’m Jasmeet Salh, a driven Software Engineer passionate about creating impactful solutions and optimizing workflows. I enjoy solving problems, building innovative tools, and turning complex ideas into practical applications.
+          <h2 class="text-reveal text-5xl font-semibold tracking-tight text-white sm:text-7xl mb-8">About Me</h2>
+          <p class="text-reveal mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-xl/8">Hi, I’m Jasmeet Salh, a driven Software Engineer passionate about creating impactful solutions and optimizing workflows. I enjoy solving problems, building innovative tools, and turning complex ideas into practical applications.
               With experience collaborating in cross-functional teams and mentoring aspiring coders, I bring strong communication, leadership, and adaptability to every project. Whether developing applications or inspiring others, I thrive on creativity and continuous learning.
               Let’s build something extraordinary together!</p>
         </div>
@@ -99,6 +108,57 @@
               </ul>
             </div>
           </dl>
+        </div>
+        
+        <!-- Interests Section -->
+        <div class="mx-auto max-w-2xl lg:mx-0 mt-16">
+          <h3 class="text-reveal text-3xl font-semibold tracking-tight text-white mb-8">Interests & Hobbies</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Badminton -->
+            <div class="interest-card bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 hover:transform hover:scale-105">
+              <div class="flex items-center justify-center mb-4">
+                <div class="interest-icon w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8l-4 4 4 4m4-4H8m8 0h4m-8-8V4"/>
+                  </svg>
+                </div>
+              </div>
+              <h4 class="text-xl font-semibold text-white text-center mb-3">Badminton</h4>
+              <p class="text-gray-400 text-center text-sm leading-relaxed">
+                Passionate about badminton, enjoying the strategic gameplay and physical challenges it brings. Great for staying active and building reflexes.
+              </p>
+            </div>
+
+            <!-- Philosophy -->
+            <div class="interest-card bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 hover:transform hover:scale-105">
+              <div class="flex items-center justify-center mb-4">
+                <div class="interest-icon w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                  </svg>
+                </div>
+              </div>
+              <h4 class="text-xl font-semibold text-white text-center mb-3">Philosophy</h4>
+              <p class="text-gray-400 text-center text-sm leading-relaxed">
+                Exploring philosophical concepts and ideas to understand life's deeper questions. Helps develop critical thinking and broader perspectives.
+              </p>
+            </div>
+
+            <!-- Woodworking -->
+            <div class="interest-card bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 hover:transform hover:scale-105">
+              <div class="flex items-center justify-center mb-4">
+                <div class="interest-icon w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+              </div>
+              <h4 class="text-xl font-semibold text-white text-center mb-3">Woodworking</h4>
+              <p class="text-gray-400 text-center text-sm leading-relaxed">
+                Creating handcrafted pieces from wood, combining creativity with precision. A hands-on hobby that balances the digital world with tangible craftsmanship.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -2,20 +2,273 @@
 @tailwind components;
 @tailwind utilities;
 
-.image-responsive {
-    width: 35rem;
-    transition: all 0.3s ease;
+/* Hero Background */
+.hero-background {
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, rgba(147, 51, 234, 0.1) 50%, transparent 100%);
+  animation: backgroundPulse 8s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+/* Floating Elements Animation */
+.floating-element-1 {
+  animation: float1 6s ease-in-out infinite;
+}
+
+.floating-element-2 {
+  animation: float2 8s ease-in-out infinite;
+}
+
+.floating-element-3 {
+  animation: float3 7s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateX(0px) rotate(0deg); }
+  50% { transform: translateX(30px) rotate(-90deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-15px) translateX(15px); }
+  75% { transform: translateY(15px) translateX(-15px); }
+}
+
+/* Profile Image Effects */
+.profile-image {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: profileGlow 3s ease-in-out infinite;
+}
+
+.profile-image:hover {
+  transform: scale(1.05) rotate(2deg);
+  filter: brightness(1.1) saturate(1.2);
+}
+
+@keyframes profileGlow {
+  0%, 100% { 
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3), 
+                0 0 60px rgba(147, 51, 234, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5), 
+                0 0 80px rgba(147, 51, 234, 0.3);
+  }
+}
+
+/* Social Links */
+.social-link {
+  @apply w-12 h-12 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110 hover:shadow-lg;
+}
+
+.social-link:hover {
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Typography Effects */
+@keyframes textShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+h1 span:last-child {
+  background-size: 200% auto;
+  animation: textShimmer 3s linear infinite;
+}
+
+/* Button Enhancements */
+.group:hover {
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+
+/* Great Vibes Font */
+.great-vibes-regular {
+  font-family: "Great Vibes", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .profile-image {
+    width: 20rem !important;
+    height: 20rem !important;
   }
   
-  @media (max-width: 768px) { /* Adjust the breakpoint as needed */
-    .image-responsive {
-      width: 20rem;
-      padding-bottom: 1rem; /* Adds padding under the image */
-    }
+  h1 {
+    font-size: 3rem !important;
   }
-  .great-vibes-regular {
-    font-family: "Great Vibes", serif;
-    font-weight: 400;
-    font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .floating-element-1,
+  .floating-element-2,
+  .floating-element-3 {
+    display: none;
   }
+  
+  .profile-image {
+    width: 16rem !important;
+    height: 16rem !important;
+  }
+  
+  h1 {
+    font-size: 2.5rem !important;
+    text-align: center;
+  }
+  
+  .hero-background {
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.05) 50%, transparent 100%);
+  }
+  
+  /* Simplify animations on mobile for performance */
+  .profile-image {
+    animation: none;
+  }
+  
+  .floating-element-1,
+  .floating-element-2,
+  .floating-element-3 {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-image {
+    width: 14rem !important;
+    height: 14rem !important;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  p {
+    font-size: 1rem !important;
+  }
+  
+  .px-8 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .floating-element-1,
+  .floating-element-2,
+  .floating-element-3 {
+    animation: none;
+  }
+  
+  .profile-image {
+    animation: none;
+  }
+  
+  .hero-background {
+    animation: none;
+  }
+}
+
+/* Focus states for keyboard navigation */
+a:focus,
+button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Loading animation for profile image */
+.profile-image {
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out 0.5s forwards, profileGlow 3s ease-in-out infinite 1.7s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text reveal animation */
+.text-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: textReveal 0.8s ease-out forwards;
+}
+
+.text-reveal:nth-child(1) { animation-delay: 0.2s; }
+.text-reveal:nth-child(2) { animation-delay: 0.4s; }
+.text-reveal:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes textReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Particle effect for extra flair (optional) */
+.hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-particles::before,
+.hero-particles::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: particle 15s linear infinite;
+}
+
+.hero-particles::before {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.hero-particles::after {
+  top: 60%;
+  right: 30%;
+  animation-delay: 7s;
+}
+
+@keyframes particle {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px) scale(0);
+    opacity: 0;
+  }
+}
   

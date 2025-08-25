@@ -1,24 +1,300 @@
-<!-- Container for the iframe -->
-<section id="resume" class="h-screen text-white space-y-4">
+<section id="resume" class="min-h-screen text-white py-16 px-4 relative overflow-hidden">
+    <!-- Background Effects (matching home page) -->
+    <div class="absolute inset-0 hero-background"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20"></div>
+    
+    <!-- Floating Elements (matching home page) -->
+    <div class="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl floating-element-1"></div>
+    <div class="absolute top-40 right-20 w-32 h-32 bg-purple-500/10 rounded-full blur-xl floating-element-2"></div>
+    <div class="absolute bottom-32 left-20 w-16 h-16 bg-cyan-500/10 rounded-full blur-xl floating-element-3"></div>
+    <!-- Header Section -->
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-12">
+            <h1 class="resume-title text-reveal text-5xl md:text-6xl font-bold text-white mb-4">
+                Resume
+            </h1>
+            <p class="text-reveal text-xl text-gray-300 max-w-2xl mx-auto">
+                Software Engineer Intern at OPG | Computer Science Co-op Student at TMU
+            </p>
+        </div>
 
-    <h1 id="Projects" class="text-5xl font-bold text-center text-gray-300">Resume</h1>
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+            <a href="https://drive.google.com/file/d/1LAZyt_GJiCr1mWAa7KUqIC8e2pPLl1hm/view?usp=drive_link" 
+               target="_blank" 
+               class="action-btn inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg font-semibold hover:bg-sky-700 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+                View Full Resume
+            </a>
+            <a href="assets/Jasmeet_Salh_Resume.pdf" 
+               download="Jasmeet_Salh_Resume.pdf"
+               class="action-btn inline-flex items-center px-6 py-3 bg-transparent border-2 border-sky-600 text-sky-400 rounded-lg font-semibold hover:bg-sky-600 hover:text-white transition duration-300">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Download PDF
+            </a>
+        </div>
 
-    <!-- Resume Button -->
-    <div class="flex justify-center">
-        <a href="https://drive.google.com/file/d/1LAZyt_GJiCr1mWAa7KUqIC8e2pPLl1hm/view?usp=drive_link" 
-           target="_blank" 
-           class="  text-white rounded-lg font-semibold hover:bg-black-600 transition duration-300 shadow-lg">
-           View Full Resume
-        </a>
+        <!-- Resume Preview Section -->
+        <div class="resume-preview-container">
+            <!-- Loading Spinner -->
+            <div id="loading-spinner" class="flex flex-col items-center justify-center h-96 bg-gray-800 rounded-lg">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-500 mb-4"></div>
+                <span class="text-gray-300 mb-2">Loading resume...</span>
+                <button onclick="showPdfFallback()" class="text-sky-400 hover:text-sky-300 text-sm underline">
+                    Click here if resume doesn't load
+                </button>
+            </div>
+            
+            <!-- PDF Container with fallback -->
+            <div class="pdf-container hidden">
+                <div class="mb-4 text-center">
+                    <p class="text-gray-300 text-sm mb-2">Resume Preview</p>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="loadGoogleDrive()" class="px-4 py-2 bg-sky-600 text-white rounded text-sm hover:bg-sky-700 transition">
+                            Load from Google Drive
+                        </button>
+                        <button onclick="loadLocalPdf()" class="px-4 py-2 bg-gray-600 text-white rounded text-sm hover:bg-gray-700 transition">
+                            View Local PDF
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="iframe-container" class="relative">
+                    <iframe id="resume-iframe"
+                            frameborder="0" 
+                            class="w-full resume-iframe hidden"
+                            title="Jasmeet Salh Resume">
+                    </iframe>
+                    
+                    <!-- Fallback message -->
+                    <div id="pdf-fallback" class="hidden flex flex-col items-center justify-center h-96 bg-gray-700 rounded-lg">
+                        <svg class="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <p class="text-gray-300 mb-4 text-center">Unable to display PDF preview</p>
+                        <div class="flex gap-4">
+                            <a href="https://drive.google.com/file/d/1LAZyt_GJiCr1mWAa7KUqIC8e2pPLl1hm/view?usp=drive_link" 
+                               target="_blank" 
+                               class="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 transition">
+                                Open in Google Drive
+                            </a>
+                            <a href="assets/Jasmeet_Salh_Resume.pdf" 
+                               target="_blank" 
+                               class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition">
+                                View PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Summary Stats -->
+         
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <!-- Enterprise Impact -->
+            <div class="stat-card bg-gradient-to-br from-sky-600/10 to-blue-600/10 rounded-xl p-6 text-center hover:from-sky-600/20 hover:to-blue-600/20 transition-all duration-300 border border-sky-600/20">
+                <div class="w-12 h-12 bg-sky-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                </div>
+                <div class="text-3xl font-bold text-white mb-2">6</div>
+                <div class="text-sm text-sky-400 font-medium mb-1">Enterprise Departments</div>
+                <div class="text-xs text-gray-400">Modernized workflows across nuclear facilities</div>
+            </div>
+
+            <!-- Automation Impact -->
+            <div class="stat-card bg-gradient-to-br from-green-600/10 to-emerald-600/10 rounded-xl p-6 text-center hover:from-green-600/20 hover:to-emerald-600/20 transition-all duration-300 border border-green-600/20">
+                <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div class="text-3xl font-bold text-white mb-2">50x</div>
+                <div class="text-sm text-green-400 font-medium mb-1">Efficiency Improvement</div>
+                <div class="text-xs text-gray-400">AI automation: 50 hours → seconds</div>
+            </div>
+
+            <!-- Technical Proficiency -->
+            <div class="stat-card bg-gradient-to-br from-purple-600/10 to-violet-600/10 rounded-xl p-6 text-center hover:from-purple-600/20 hover:to-violet-600/20 transition-all duration-300 border border-purple-600/20">
+                <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </div>
+                <div class="text-3xl font-bold text-white mb-2">15+</div>
+                <div class="text-sm text-purple-400 font-medium mb-1">Tech Stack Mastery</div>
+                <div class="text-xs text-gray-400">Full-stack, Cloud, DevOps, AI/ML</div>
+            </div>
+
+            <!-- Professional Development -->
+            <div class="stat-card bg-gradient-to-br from-orange-600/10 to-red-600/10 rounded-xl p-6 text-center hover:from-orange-600/20 hover:to-red-600/20 transition-all duration-300 border border-orange-600/20">
+                <div class="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <div class="text-3xl font-bold text-white mb-2">2+</div>
+                <div class="text-sm text-orange-400 font-medium mb-1">Years Co-op Experience</div>
+                <div class="text-xs text-gray-400">Nuclear industry + volunteer teaching</div>
+            </div>
+        </div>
+
+        <!-- Key Highlights Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Experience Card -->
+            <div class="resume-card bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 hover:bg-gray-700/50 transition duration-300">
+                <div class="w-12 h-12 bg-sky-600 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Current Role</h3>
+                <div class="text-sky-400 font-medium mb-2">Software Engineer Intern</div>
+                <div class="text-gray-300 text-sm mb-3">Ontario Power Generation (OPG)</div>
+                <p class="text-gray-400 text-sm">Leading full-stack development of enterprise applications, modernizing workflows across 6 departments with Angular, .NET, and Azure.</p>
+            </div>
+
+            <!-- Technical Skills Card -->
+            <div class="resume-card bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 hover:bg-gray-700/50 transition duration-300">
+                <div class="w-12 h-12 bg-sky-600 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Core Technologies</h3>
+                <div class="space-y-2">
+                    <div class="flex flex-wrap gap-1">
+                        <span class="tech-badge px-2 py-1 bg-sky-600/20 text-sky-400 rounded-md text-xs">Angular</span>
+                        <span class="tech-badge px-2 py-1 bg-sky-600/20 text-sky-400 rounded-md text-xs">React</span>
+                        <span class="tech-badge px-2 py-1 bg-sky-600/20 text-sky-400 rounded-md text-xs">.NET C#</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1">
+                        <span class="tech-badge px-2 py-1 bg-green-600/20 text-green-400 rounded-md text-xs">SQL Server</span>
+                        <span class="tech-badge px-2 py-1 bg-green-600/20 text-green-400 rounded-md text-xs">Azure</span>
+                        <span class="tech-badge px-2 py-1 bg-green-600/20 text-green-400 rounded-md text-xs">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Card -->
+            <div class="resume-card bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 hover:bg-gray-700/50 transition duration-300">
+                <div class="w-12 h-12 bg-sky-600 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Education</h3>
+                <div class="text-sky-400 font-medium mb-1">Bachelor of Science</div>
+                <div class="text-gray-300 text-sm mb-2">Computer Science - Co-op Program</div>
+                <div class="text-gray-400 text-sm mb-2">Toronto Metropolitan University</div>
+                <div class="text-gray-500 text-xs">Sep 2022 - Apr 2027</div>
+            </div>
+
+            <!-- Key Achievement Card -->
+            <div class="resume-card bg-gradient-to-r from-sky-600/20 to-blue-600/20 backdrop-blur-sm rounded-lg p-6 hover:from-sky-600/30 hover:to-blue-600/30 transition duration-300 md:col-span-2 lg:col-span-1">
+                <div class="w-12 h-12 bg-gradient-to-r from-sky-500 to-blue-500 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Key Achievement</h3>
+                <p class="text-gray-300 text-sm mb-2">AI-Powered Report Generation</p>
+                <p class="text-gray-400 text-xs">Reduced manual work from 10-50 hours to seconds, significantly enhancing compliance and accountability in nuclear operations.</p>
+            </div>
+
+            <!-- DevOps & Cloud Card -->
+            <div class="resume-card bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 hover:bg-gray-700/50 transition duration-300 md:col-span-2">
+                <div class="w-12 h-12 bg-sky-600 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-white">DevOps & Cloud Expertise</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <div class="text-sm text-sky-400 mb-2">CI/CD & Deployment</div>
+                        <div class="text-xs text-gray-400">Azure DevOps, GitHub Actions, IIS Servers</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-sky-400 mb-2">Data & Analytics</div>
+                        <div class="text-xs text-gray-400">Power BI, SQL Server, VBA Automation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- PDF Container -->
-    <div class="pdf-container w-full h-full mt-6">
-        <iframe src="https://drive.google.com/file/d/1LAZyt_GJiCr1mWAa7KUqIC8e2pPLl1hm/view?usp=drive_link" 
-                frameborder="0" 
-                class="w-full h-full">
-        </iframe>
-    </div>
-     
-
 </section>
+
+<script>
+    let loadTimeout;
+    
+    function showPdfFallback() {
+        document.getElementById('loading-spinner').classList.add('hidden');
+        document.querySelector('.pdf-container').classList.remove('hidden');
+        document.getElementById('pdf-fallback').classList.remove('hidden');
+    }
+    
+    function loadGoogleDrive() {
+        const iframe = document.getElementById('resume-iframe');
+        const fallback = document.getElementById('pdf-fallback');
+        
+        // Hide fallback and show iframe
+        fallback.classList.add('hidden');
+        iframe.classList.remove('hidden');
+        
+        // Try the embedded Google Drive URL
+        iframe.src = 'https://drive.google.com/file/d/1LAZyt_GJiCr1mWAa7KUqIC8e2pPLl1hm/preview';
+        
+        // Set timeout to show fallback if it doesn't load
+        loadTimeout = setTimeout(() => {
+            iframe.classList.add('hidden');
+            fallback.classList.remove('hidden');
+        }, 8000);
+        
+        iframe.onload = function() {
+            clearTimeout(loadTimeout);
+        };
+    }
+    
+    function loadLocalPdf() {
+        const iframe = document.getElementById('resume-iframe');
+        const fallback = document.getElementById('pdf-fallback');
+        
+        // Hide fallback and show iframe
+        fallback.classList.add('hidden');
+        iframe.classList.remove('hidden');
+        
+        // Try loading local PDF
+        iframe.src = 'assets/Jasmeet_Salh_Resume.pdf';
+        
+        // Set timeout to show fallback if it doesn't load
+        loadTimeout = setTimeout(() => {
+            iframe.classList.add('hidden');
+            fallback.classList.remove('hidden');
+        }, 5000);
+        
+        iframe.onload = function() {
+            clearTimeout(loadTimeout);
+        };
+    }
+    
+    // Auto-load on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show the PDF container after a short delay
+        setTimeout(() => {
+            document.getElementById('loading-spinner').classList.add('hidden');
+            document.querySelector('.pdf-container').classList.remove('hidden');
+            
+            // Try Google Drive first
+            loadGoogleDrive();
+        }, 1000);
+    });
+</script>
