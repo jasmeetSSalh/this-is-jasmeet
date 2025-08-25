@@ -125,10 +125,7 @@ span[class*="bg-"][class*="/20"]:hover {
     flex-direction: column;
   }
   
-  .featured-project .lg\\:w-1\\/3 {
-    width: 100%;
-    margin-top: 1rem;
-  }
+
   
   .featured-project .flex.gap-4 {
     flex-direction: column;
@@ -465,6 +462,7 @@ span[class*="bg-"][class*="/20"]:hover {
   
   .projects-header h1, 
   .projects-header h2 {
+    font-size: 10rem !important;
     animation: none !important;
   }
 }
