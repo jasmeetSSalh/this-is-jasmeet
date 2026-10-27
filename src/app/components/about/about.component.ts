@@ -1,4 +1,9 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
+
+interface SkillGroup {
+  label: string;
+  skills: string[];
+}
 
 @Component({
   selector: 'app-about',
@@ -8,41 +13,23 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 })
 export class AboutComponent {
 
-  lang = {
-    "angular": "85%",
-    "typescript": "70%",
-    ".net": "70%",
-    "java": "80%",
-    "python": "80%",
-    "c#": "60%",
-    "devops": "60%",
-    "mysql": "80%",
-    "oracle": "60%",
-    "powerbi": "90%"
-  };
-
-  constructor(private renderer: Renderer2) { }
-
-  ngOnInit(): void {
-    this.updateLanguageSkills();
-  }
-
-  updateLanguageSkills(): void {
-    let multiply = 4;
-    const delay = 700;
-
-    // Iterate through each language and update the corresponding element
-    Object.entries(this.lang).forEach(([language, percent]) => {
-      setTimeout(() => {
-        // Select the element by its ID and set its inner HTML to the percentage value
-        const element = document.getElementById(`${language}-pourcent`);
-        if (element) {
-          this.renderer.setProperty(element, 'innerHTML', percent);
-        }
-      }, delay * multiply);
-
-      multiply++;
-    });
-  }
+  readonly skillGroups: SkillGroup[] = [
+    {
+      label: 'Languages',
+      skills: ['Python', 'TypeScript', 'JavaScript', 'C#', 'SQL', 'Swift'],
+    },
+    {
+      label: 'Frameworks',
+      skills: ['Angular', 'Next.js', 'ASP.NET Core', 'FastAPI', 'Entity Framework', 'Node.js'],
+    },
+    {
+      label: 'Cloud & DevOps',
+      skills: ['Azure (AKS, Key Vault, App Services)', 'Kubernetes', 'Istio', 'Helm', 'GitHub Actions', 'Spinnaker', 'AWS EC2'],
+    },
+    {
+      label: 'Data & Observability',
+      skills: ['SQL Server', 'PostgreSQL', 'SQLite', 'ELK Stack', 'Grafana', 'Power BI'],
+    },
+  ];
 
 }
