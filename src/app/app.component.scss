@@ -122,30 +122,20 @@ body {
     opacity: 0.6;
   }
 }
+
+// Sections set their own width and spacing through .section-container in styles.css.
 .main-content {
   position: relative;
-  z-index: 1; /* Ensure it appears above the stars */
+  z-index: 1; // Keeps content above the stars
   width: 100%;
-  max-width: 1200px; /* Adjust as needed */
-  margin: 0 auto;
-  padding: 20px; /* Optional padding */
-  color: white; /* Ensure text contrasts against the dark background */
-}
-/* styles.css (global styles for sections) */
-section {
-padding: 4rem 1rem;
-scroll-margin-top: 5rem; /* For better scrolling behavior */  
+  color: white;
 }
 
-header {
-height: 100vh; /* Make the header full height */
-}
 html {
   scroll-behavior: smooth;
 }
 
-
-.home-section{
+.home-section {
   position: relative;
   z-index: 10;
 }

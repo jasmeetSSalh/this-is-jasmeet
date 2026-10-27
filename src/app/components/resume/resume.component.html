@@ -1,80 +1,18 @@
-<section id="resume" class="min-h-screen text-white py-16 px-4 relative overflow-hidden">
-    <!-- Background Effects (matching home page) -->
-    <div class="absolute inset-0 hero-background"></div>
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20"></div>
-
-    <!-- Floating Elements (matching home page) -->
-    <div class="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl floating-element-1"></div>
-    <div class="absolute top-40 right-20 w-32 h-32 bg-purple-500/10 rounded-full blur-xl floating-element-2"></div>
-    <div class="absolute bottom-32 left-20 w-16 h-16 bg-cyan-500/10 rounded-full blur-xl floating-element-3"></div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-        <!-- Header Section -->
-        <div class="max-w-2xl lg:mx-0">
-          <h2 class="text-reveal text-5xl font-semibold tracking-tight text-white sm:text-7xl mb-8">Resume</h2>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <a [href]="viewUrl"
-               target="_blank"
-               rel="noopener"
-               class="action-btn inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg font-semibold hover:bg-sky-700 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                </svg>
-                Open Resume
-            </a>
-            <a [href]="downloadUrl"
-               class="action-btn inline-flex items-center px-6 py-3 bg-transparent border-2 border-sky-600 text-sky-400 rounded-lg font-semibold hover:bg-sky-600 hover:text-white transition duration-300">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-                Download PDF
-            </a>
-        </div>
-
-        <!-- Resume Preview (always the latest version from Google Drive) -->
-        <div class="resume-preview-container mb-16">
-            <iframe [src]="previewUrl"
-                    class="resume-iframe"
-                    title="Jasmeet Salh's resume"
-                    loading="lazy"
-                    allow="autoplay"></iframe>
-        </div>
-
-        <!-- Experience -->
-        <h3 class="text-reveal text-3xl font-bold text-white mb-8">Experience</h3>
-        <ol class="relative border-l border-sky-600/40 ml-3 mb-16 space-y-10">
-            @for (role of roles; track role.title + role.dates) {
-                <li class="pl-8 relative">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-500 ring-4 ring-sky-500/20"></span>
-                    <div class="resume-card bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 hover:bg-gray-700/50 transition duration-300">
-                        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
-                            <h4 class="text-xl font-semibold text-white">{{ role.title }}</h4>
-                            <span class="text-sm text-gray-400 whitespace-nowrap">{{ role.dates }}</span>
-                        </div>
-                        <div class="text-sky-400 font-medium mb-3">{{ role.company }}</div>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-4">{{ role.summary }}</p>
-                        <div class="flex flex-wrap gap-2">
-                            @for (item of role.tech; track item) {
-                                <span class="tech-badge px-2 py-1 bg-sky-600/20 text-sky-400 rounded-md text-xs">{{ item }}</span>
-                            }
-                        </div>
-                    </div>
-                </li>
-            }
-        </ol>
-
-        <!-- Education -->
-        <h3 class="text-reveal text-3xl font-bold text-white mb-8">Education</h3>
-        <div class="resume-card bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 hover:bg-gray-700/50 transition duration-300 max-w-3xl">
-            <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
-                <h4 class="text-xl font-semibold text-white">BSc in Computer Science, Co-op</h4>
-                <span class="text-sm text-gray-400 whitespace-nowrap">Sep 2022 – Apr 2027</span>
-            </div>
-            <div class="text-sky-400 font-medium">Toronto Metropolitan University</div>
-        </div>
+<div class="section-container">
+  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+    <h2 class="section-title mb-0">Resume</h2>
+    <div class="flex flex-wrap gap-3">
+      <a [href]="viewUrl" target="_blank" rel="noopener" class="btn-primary">Open in new tab</a>
+      <a [href]="downloadUrl" class="btn-secondary">Download PDF</a>
     </div>
-</section>
+  </div>
+
+  <!-- Always the latest version from Google Drive -->
+  <div class="rounded-xl overflow-hidden border border-white/10 bg-gray-900">
+    <iframe [src]="previewUrl"
+            class="block w-full h-[80vh] min-h-[480px]"
+            title="Jasmeet Salh's resume"
+            loading="lazy"
+            allow="autoplay"></iframe>
+  </div>
+</div>

@@ -9,7 +9,6 @@ interface SkillGroup {
   selector: 'app-about',
   imports: [],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.scss'
 })
 export class AboutComponent {
 
@@ -30,6 +29,12 @@ export class AboutComponent {
       label: 'Data & Observability',
       skills: ['SQL Server', 'PostgreSQL', 'SQLite', 'ELK Stack', 'Grafana', 'Power BI'],
     },
+  ];
+
+  readonly interests = [
+    { name: 'Badminton', description: 'Strategy, footwork and quick reflexes. My favourite way to stay active.' },
+    { name: 'Philosophy', description: "Reading about life's big questions, which keeps my thinking sharp." },
+    { name: 'Woodworking', description: 'Building things by hand, a good balance to time spent on screens.' },
   ];
 
 }
