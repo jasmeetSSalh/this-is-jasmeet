@@ -101,7 +101,7 @@ export class ProjectsComponent {
       name: 'PilotAssess',
       tag: 'Full-stack',
       description: 'A tool for flight instructors to build scenario-based simulator assessments, grade each pilot on observed behaviours, '
-        + 'and export filled-in Word report cards. The Angular app and the .NET API ship together as one deployable that also runs offline.',
+        + 'and export filled-in Word report cards. Instructors sign in with hashed-password accounts, and every API endpoint requires a session.',
       tech: ['Angular', 'ASP.NET Core', 'EF Core', 'SQLite'],
       repo: 'https://github.com/jasmeetSSalh/humanPerformanceTool',
       placeholder: 'Assessment platform',
